@@ -1,68 +1,185 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Installation
 
-## Available Scripts
+First, install the following dev dependencies:
 
-In the project directory, you can run:
+```console
+yarn add --dev eslint eslint-config-airbnb eslint-config-prettier eslint-loader eslint-plugin-babel eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react redux-logger husky lint-staged pretty-quick
+```
 
-### `npm start`
+Then, in our root folder, create a file called `.eslintrc` and put the following code there:
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```json
+{
+    "parser": "babel-eslint",
+    "extends": ["airbnb", "prettier", "prettier/react"],
+    "plugins": ["prettier"],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "mocha": true,
+        "es6": true,
+        "jest": true
+    },
+    "rules": {
+        "indent": ["error", 4],
+        "space-before-function-paren": "off",
+        "react/prefer-stateless-function": "warn",
+        "react/jsx-one-expression-per-line": "off",
+        "import/no-extraneous-dependencies": [
+            "error",
+            { "devDependencies": true }
+        ],
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "linebreak-style": "off",
+        "global-require": "off",
+        "semi": "warn",
+        "arrow-body-style": "off",
+        "no-multiple-empty-lines": ["warn", { "max": 1 }],
+        "no-unused-expressions": [
+            "error",
+            {
+                "allowTaggedTemplates": true
+            }
+        ],
+        "no-underscore-dangle": [
+            2,
+            { "allow": ["__REDUX_DEVTOOLS_EXTENSION__"] }
+        ]
+    }
+}
+```
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Prettier
 
-### `npm test`
+Prettier is basically a code formatter. It parses your code and re-prints it with its own rules that take the maximum line length into account, wrapping code when necessary.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You just need to install it:
 
-### `npm run build`
+```console
+yarn add --dev prettier
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+And in our root folder, create a file called `.prettierrc` and put the following code there:
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```json
+{
+    "printWidth": 80,
+    "tabWidth": 4,
+    "semi": true,
+    "singleQuote": true,
+    "bracketSpacing": true
+}
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Redux
 
-### `npm run eject`
+Redux makes it easy to manage the state of your application.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+First, we’re going to install some dependencies:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```console
+yarn add redux react-redux redux-thunk
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Then, we’re going to create our Redux store, and put some state there. In our `src/redux/store` folder, create an index.js file and put that following code there:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```js
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
-## Learn More
+import rootReducer from '../reducers';
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+const middleware = applyMiddleware(thunk, logger);
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+const reduxDevTools =
+    window.__REDUX_DEVTOOLS_EXTENSION__ &&
+    window.__REDUX_DEVTOOLS_EXTENSION__();
 
-### Code Splitting
+const store = createStore(
+    rootReducer,
+    compose(
+        middleware,
+        reduxDevTools
+    )
+);
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+export default store;
+```
 
-### Analyzing the Bundle Size
+Last, we’re gonna to our index.js in our src folder, and wrap the code with the `<Provider />` and pass our store as props to make it available to our application.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+It’s going to be like this:
 
-### Making a Progressive Web App
+```js
+import React, { Fragment } from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+import store from './store';
+import App from './components/App';
 
-### Advanced Configuration
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+);
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## React Router
 
-### Deployment
+React Router is the standard routing library for React. Basically, it keeps your UI in sync with the URL. We’re gonna use it in our boilerplate, so install it:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+```console
+yarn add react-router-dom
+```
 
-### `npm run build` fails to minify
+After that, go to our `index.js` in our `src` folder and wrap all the code there with the `<BrowserRouter>`.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Our index.js in our src folder it’s going to end up like this:
+
+```js
+import React, { Fragment } from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+import store from './store';
+import App from './components/App';
+
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </BrowserRouter>,
+    document.getElementById('root')
+);
+```
+
+## Styled Components
+
+Styled Components makes CSS easy for everyone, as it helps you organize your React project. Its objective is to write more small and reusable components. We’re gonna use it, and if you want to learn more about it, read up [here.](https://www.styled-components.com)
+
+First, install it:
+
+```console
+yarn add styled-components
+```
+
+Then, in our App.js file inside our components folder, we’re going to create a simple title using Styled Components. Our title is going to be like this:
+
+```js
+const Title = styled.h1`
+    color: black;
+    font-size: 2.5rem;
+    font-weight: 700;
+`;
+```
