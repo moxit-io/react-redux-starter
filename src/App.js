@@ -15,15 +15,21 @@ const App = () => (
         <ul>
             <li>
                 <span role="img" aria-label="emoji">
-                    ⚛
+                    ⚛️
                 </span>
-                React — React with create-react-app
+                React — Started with create-react-app
             </li>
             <li>
                 <span role="img" aria-label="emoji">
                     ♻
                 </span>
-                Redux — State Management, with redux dev tools
+                Redux — State with redux dev tools
+            </li>
+            <li>
+                <span role="img" aria-label="emoji">
+                    👈 👉
+                </span>
+                React Router - Routing with react-router-dom
             </li>
             <li>
                 <span role="img" aria-label="emoji">

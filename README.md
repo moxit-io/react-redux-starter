@@ -6,8 +6,9 @@ This boilerplate contains all you need to start your next React.js project. Simp
 
 This boilerplate features all the latest tools and practices in the industry.
 
--   ⚛ **React** — React with `create-react-app`
--   ♻ **Redux** — State Management, with redux dev tools
+-   ⚛️ **React** — Started with `create-react-app`
+-   ♻ **Redux** — State with redux dev tools
+-   👈 👉 **React router** - Routing with `react-router-dom`
 -   💅 **CSS** — Styled Components
 -   ✅ **Tests** — Jest
 -   💖 **Lint** — ESlint
@@ -206,3 +207,7 @@ const Title = styled.h1`
     font-weight: 700;
 `;
 ```
+
+### Source
+
+Blog by [Leonardo Maldonado](https://medium.freecodecamp.org/a-complete-react-boilerplate-tutorial-from-zero-to-hero-20023e086c4a)
