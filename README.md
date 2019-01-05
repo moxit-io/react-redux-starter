@@ -1,6 +1,29 @@
-# Installation
+# React, Redux boilerplate
 
-First, install the following dev dependencies:
+This boilerplate contains all you need to start your next React.js project. Simple, robust, well-organized, all you need to do is clone, install and you're ready to start.
+
+## Features
+
+This boilerplate features all the latest tools and practices in the industry.
+
+-   ⚛ **React** — React with `create-react-app`
+-   ♻ **Redux** — State Management, with redux dev tools
+-   💅 **CSS** — Styled Components
+-   ✅ **Tests** — Jest
+-   💖 **Lint** — ESlint
+-   🐶 **Husky** — Prevent bad commits
+
+## Boilerplate setup steps
+
+Start by creating your empty React application using `create-react-app`
+
+```console
+npx create-react-app my-app
+cd my-app
+npm start
+```
+
+Install the following dev dependencies:
 
 ```console
 yarn add --dev eslint eslint-config-airbnb eslint-config-prettier eslint-loader eslint-plugin-babel eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react redux-logger husky lint-staged pretty-quick
