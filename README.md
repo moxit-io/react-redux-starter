@@ -14,7 +14,20 @@ This boilerplate features all the latest tools and practices in the industry.
 -   💖 **Lint** — ESlint
 -   🐶 **Husky** — Prevent bad commits
 
+## Usage
+
+Clone, Install dependencies, and get your hands dirty.
+
+-   `git clone https://github.com/moxit-io/react-redux-starter.git` - clone repo
+-   `cd react-redux-starter` - cd into your newly created project directory
+-   `yarn install` - install dependencies
+-   `yarn start` - start development server
+
+---
+
 ## Boilerplate setup steps
+
+The steps below are for reference only no need to repeat these steps in order to start using the boilerplate.
 
 Start by creating your empty React application using `create-react-app`
 
